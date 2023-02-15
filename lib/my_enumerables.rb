@@ -1,6 +1,17 @@
 module Enumerable
 
 
+  def my_inject(&block)
+    sum = 0
+    self.my_each do |value|
+     sum = block.call(sum,value)
+      
+    end
+    return sum
+
+  end
+
+
   def my_each_with_index(&block)
     y = 0
     self.my_each do |x|
@@ -58,28 +69,16 @@ class Array
     for i in 0..self.length-1 do
       yield (self[i])    
     end
+
     return self
   end
- end
-
-
-
-Class Array
- def my_each_with_index(&block)
-  y = 0
-  self.each do |x|
-    block.call(x,y)
-    y += 1
-
-  end
-
 end
 
-end
+
+
+
  
 newArray = [1,2,3,4,1,2,6,4]
 
-results = []
 
-newArray.my_each_with_index{|x,index| results << [2*x, 2*index]}
-
+puts newArray.my_inject {|sum,value| sum+value}
