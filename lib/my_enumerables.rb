@@ -1,5 +1,29 @@
 module Enumerable
 
+  def my_none?(&block)
+    counter = 0
+      self.my_each do |x|
+      counter += 1 if block.call(x)
+        
+      end
+    
+    return counter == 0
+    end
+
+
+
+  def my_map(&block)
+  new_array = []
+    self.my_each do |x|
+    new_array << block.call(x)
+      
+    end
+  
+  return new_array  
+  end
+
+
+
 
   def my_inject(initial_value=0, &block)
     sum = initial_value
@@ -78,6 +102,6 @@ end
 
 
 #Testing 
-#newArray = [1,2,3,4,1,2,6,4]
+newArray = [11,22,33,44,11,22,66,44]
 
-#puts newArray.my_inject(1) {|sum,value| sum*value}
+p newArray.my_none? {|x| x > 70}
