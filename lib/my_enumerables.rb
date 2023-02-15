@@ -1,5 +1,17 @@
 module Enumerable
 
+
+  def my_each_with_index(&block)
+    y = 0
+    self.my_each do |x|
+      block.call(x,y)
+      y += 1
+
+    end
+
+  end
+
+
   def my_count(&block)
 
     if block_given?
@@ -52,5 +64,22 @@ class Array
 
 
 
-# newArray = [1,2,3,4,1,2,6,4]
- #puts newArray.my_count
+Class Array
+ def my_each_with_index(&block)
+  y = 0
+  self.each do |x|
+    block.call(x,y)
+    y += 1
+
+  end
+
+end
+
+end
+ 
+newArray = [1,2,3,4,1,2,6,4]
+
+results = []
+
+newArray.my_each_with_index{|x,index| results << [2*x, 2*index]}
+
