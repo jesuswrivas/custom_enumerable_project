@@ -1,8 +1,8 @@
 module Enumerable
 
 
-  def my_inject(&block)
-    sum = 0
+  def my_inject(initial_value=0, &block)
+    sum = initial_value
     self.my_each do |value|
      sum = block.call(sum,value)
       
@@ -77,8 +77,7 @@ end
 
 
 
- 
-newArray = [1,2,3,4,1,2,6,4]
+#Testing 
+#newArray = [1,2,3,4,1,2,6,4]
 
-
-puts newArray.my_inject {|sum,value| sum+value}
+#puts newArray.my_inject(1) {|sum,value| sum*value}
