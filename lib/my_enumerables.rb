@@ -1,5 +1,18 @@
 module Enumerable
 
+  def my_select(&block)
+  newArray = []
+      self.my_each do |x|
+      newArray << x if block.call(x)
+        
+      end
+    
+    return newArray
+
+  end
+
+
+
   def my_none?(&block)
     counter = 0
       self.my_each do |x|
@@ -70,13 +83,14 @@ module Enumerable
   return aux_array.uniq.length == 1 && aux_array[0] == true
   end
 
+  
   def my_any?(&block)
    
       self.my_each do |x|
       return true if block.call(x)
-      
-      return false
+          
       end
+      return false
   end
 
 end
@@ -98,10 +112,3 @@ class Array
   end
 end
 
-
-
-
-#Testing 
-newArray = [11,22,33,44,11,22,66,44]
-
-p newArray.my_none? {|x| x > 70}
